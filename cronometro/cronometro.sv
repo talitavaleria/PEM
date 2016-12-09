@@ -54,11 +54,9 @@ end
 	
 always_comb
 begin
-	//LEDR[0] <= pause;
-	//LEDR[1] <= reset;
-	//LEDR[2] <= flag;
-	LEDR <= saved_cont_sec;
-	LEDG <= saved_cont_dec;
+	LEDR[0] <= pause;
+	LEDR[1] <= reset;
+	LEDR[2] <= flag;
 	reset <= ~KEY[1];
 end
 	
@@ -86,86 +84,56 @@ always_ff @(posedge clock_dec)
 begin
 	if (reset == 1'b1)
 	begin
-		cont_sec <= 'd0;
-		cont_dec <= 'd0;
+		cont_sec = 'd0;
+		cont_dec = 'd0;
 	end
-	
-	/*if (pause == 1'b1)
-	begin
-		/*if(SW[0] == 1'b1 || SW[1] == 1'b1 || SW[2] == 1'b1)
-		begin
-	
-			saved_cont_dec = cont_dec;
-			saved_cont_sec = cont_sec;
-			flag = 1'b1;
-	
-			if(SW[0] == 1'b1)
-			begin	
-				cont_dec <= save_cont[0][6:0];
-				cont_sec <= save_cont[0][10:7];
-				
-			end
-			else if(SW[1] == 1'b1)
-			begin	
-				cont_dec <= save_cont[1][6:0];
-				cont_sec <= save_cont[1][10:7];
-				
-				
-			end
-			else if(SW[2] == 1'b1)
-			begin	
-				cont_dec <= save_cont[2][6:0];
-				cont_sec <= save_cont[2][10:7];
-				
-			end
-		end
-		else
-		begin*/
 
 	if(pause == 1'b1)
 	begin
 		if(flag == 1'b1)
 		begin
-			cont_sec <= saved_cont_sec;
-			cont_dec <= saved_cont_dec;
+			cont_sec = saved_cont_sec;
+			cont_dec = saved_cont_dec;
 			flag <= 1'b0;
 		end
 		if( cont_sec == 'd59 )
-			cont_sec <= 'd0;
+			cont_sec = 'd0;
 			
 		if( cont_dec == 'd99 )
 		begin
-			cont_dec <= 'd0;
-			cont_sec <= cont_sec + 1'b1;
+			cont_dec = 'd0;
+			cont_sec = cont_sec + 1'b1;
 		end
 		else
-			cont_dec <= cont_dec + 1'b1;
+			cont_dec = cont_dec + 1'b1;
+			
+		saved_cont_dec = cont_dec;
+		saved_cont_sec = cont_sec;
 	end
 	else
 	begin
-		saved_cont_dec = cont_dec;
-		saved_cont_sec = cont_sec;
 		flag = 1'b1;
 
 		if(SW[0] == 1'b1)
 		begin	
-			cont_dec <= save_cont[0][6:0];
-			cont_sec <= save_cont[0][10:7];
+			cont_dec = save_cont[0][6:0];
+			cont_sec = save_cont[0][10:7];
 			
 		end
 		else if(SW[1] == 1'b1)
 		begin	
-			cont_dec <= save_cont[1][6:0];
-			cont_sec <= save_cont[1][10:7];
+			cont_dec = save_cont[1][6:0];
+			cont_sec = save_cont[1][10:7];
 			
 			
 		end
 		else if(SW[2] == 1'b1)
 		begin	
-			cont_dec <= save_cont[2][6:0];
-			cont_sec <= save_cont[2][10:7];
+			cont_dec = save_cont[2][6:0];
+			cont_sec = save_cont[2][10:7];
 			
 		end
+	
 	end
 	
 	du <= cont_dec % 6'd10;
