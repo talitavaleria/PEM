@@ -112,26 +112,24 @@ begin
 	end
 	else
 	begin
-		flag = 1'b1;
-
+		
 		if(SW[0] == 1'b1)
 		begin	
 			cont_dec = save_cont[0][6:0];
 			cont_sec = save_cont[0][10:7];
-			
+			flag = 1'b1;
 		end
 		else if(SW[1] == 1'b1)
 		begin	
 			cont_dec = save_cont[1][6:0];
 			cont_sec = save_cont[1][10:7];
-			
-			
+			flag = 1'b1;
 		end
 		else if(SW[2] == 1'b1)
 		begin	
 			cont_dec = save_cont[2][6:0];
 			cont_sec = save_cont[2][10:7];
-			
+			flag = 1'b1;
 		end
 	
 	end
