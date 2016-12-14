@@ -1,7 +1,13 @@
+/*
+ *	@file Start.sv
+ * @author Talita Valeria
+ * @date 06/12/2016
+ * @brief Modulo responsavel por gerar o clock para o sistema (1 centesimos de segundo)
+ *
+**/
 module Clock(
 	input logic clock,
 	output logic clock_dec
-	//output logic clock_sec
 ); 
 
 logic [26:0]cont_clock_dec;
@@ -16,14 +22,6 @@ begin
 	end
 	else
 		cont_clock_dec <= cont_clock_dec + 1'b1;
-
-/*	if( cont_clock_sec == 'd24999999 )
-	begin
-		clock_sec <= ~clock_sec;
-		cont_clock_sec <= 0;
-	end
-	else
-		cont_clock_sec <= cont_clock_sec + 1'b1;*/
 end
 
 

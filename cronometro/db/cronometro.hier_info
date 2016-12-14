@@ -11,7 +11,7 @@ SW[7] => ~NO_FANOUT~
 SW[8] => ~NO_FANOUT~
 SW[9] => ~NO_FANOUT~
 KEY[0] => KEY[0].IN1
-KEY[1] => reset.IN2
+KEY[1] => reset.IN1
 KEY[2] => KEY[2].IN1
 KEY[3] => ~NO_FANOUT~
 LEDR[0] <= pause.DB_MAX_OUTPUT_PORT_TYPE
@@ -234,20 +234,20 @@ reset => cont_dec.OUTPUTSELECT
 reset => cont_dec.OUTPUTSELECT
 reset => cont_dec.OUTPUTSELECT
 reset => cont_dec.OUTPUTSELECT
+reset => saved_cont_sec.OUTPUTSELECT
+reset => saved_cont_sec.OUTPUTSELECT
+reset => saved_cont_sec.OUTPUTSELECT
+reset => saved_cont_sec.OUTPUTSELECT
+reset => saved_cont_sec.OUTPUTSELECT
+reset => saved_cont_sec.OUTPUTSELECT
+reset => saved_cont_dec.OUTPUTSELECT
+reset => saved_cont_dec.OUTPUTSELECT
+reset => saved_cont_dec.OUTPUTSELECT
+reset => saved_cont_dec.OUTPUTSELECT
+reset => saved_cont_dec.OUTPUTSELECT
+reset => saved_cont_dec.OUTPUTSELECT
+reset => saved_cont_dec.OUTPUTSELECT
 reset => flag.OUTPUTSELECT
-reset => saved_cont_sec[0].ENA
-reset => saved_cont_sec[1].ENA
-reset => saved_cont_sec[2].ENA
-reset => saved_cont_sec[3].ENA
-reset => saved_cont_sec[4].ENA
-reset => saved_cont_sec[5].ENA
-reset => saved_cont_dec[0].ENA
-reset => saved_cont_dec[1].ENA
-reset => saved_cont_dec[2].ENA
-reset => saved_cont_dec[3].ENA
-reset => saved_cont_dec[4].ENA
-reset => saved_cont_dec[5].ENA
-reset => saved_cont_dec[6].ENA
 lap => save_pos[0].CLK
 lap => save_pos[1].CLK
 lap => save_cont[0][0].CLK
@@ -344,8 +344,7 @@ sd[3] <= sd[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 
 
 |cronometro|Start:str
-start => tg.CLK
-reset => ~NO_FANOUT~
-pause <= tg.DB_MAX_OUTPUT_PORT_TYPE
+start => pause~reg0.CLK
+pause <= pause~reg0.DB_MAX_OUTPUT_PORT_TYPE
 
 

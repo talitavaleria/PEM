@@ -3,28 +3,28 @@ TimeQuest Timing Analyzer Summary
 ------------------------------------------------------------
 
 Type  : Slow Model Setup 'Clock:clk|clock_dec'
-Slack : -13.731
-TNS   : -305.776
+Slack : -13.973
+TNS   : -291.561
 
 Type  : Slow Model Setup 'CLOCK_50'
-Slack : -2.965
-TNS   : -56.201
+Slack : -2.971
+TNS   : -58.013
 
 Type  : Slow Model Setup 'KEY[2]'
-Slack : -1.963
-TNS   : -50.398
+Slack : -2.098
+TNS   : -53.261
 
 Type  : Slow Model Setup 'KEY[0]'
 Slack : 0.307
 TNS   : 0.000
 
 Type  : Slow Model Hold 'CLOCK_50'
-Slack : -2.689
-TNS   : -2.689
+Slack : -2.677
+TNS   : -2.677
 
 Type  : Slow Model Hold 'KEY[2]'
-Slack : -0.590
-TNS   : -3.716
+Slack : 0.439
+TNS   : 0.000
 
 Type  : Slow Model Hold 'Clock:clk|clock_dec'
 Slack : 0.445
@@ -48,27 +48,27 @@ TNS   : -2.691
 
 Type  : Slow Model Minimum Pulse Width 'Clock:clk|clock_dec'
 Slack : -0.611
-TNS   : -51.324
+TNS   : -48.880
 
 Type  : Fast Model Setup 'Clock:clk|clock_dec'
-Slack : -4.567
-TNS   : -91.932
+Slack : -4.454
+TNS   : -83.333
 
 Type  : Fast Model Setup 'CLOCK_50'
-Slack : -0.674
-TNS   : -7.912
+Slack : -0.684
+TNS   : -8.664
 
 Type  : Fast Model Setup 'KEY[2]'
-Slack : -0.247
-TNS   : -2.515
+Slack : -0.231
+TNS   : -3.235
 
 Type  : Fast Model Setup 'KEY[0]'
 Slack : 0.665
 TNS   : 0.000
 
 Type  : Fast Model Hold 'CLOCK_50'
-Slack : -1.718
-TNS   : -1.718
+Slack : -1.709
+TNS   : -1.709
 
 Type  : Fast Model Hold 'Clock:clk|clock_dec'
 Slack : 0.215
@@ -79,7 +79,7 @@ Slack : 0.215
 TNS   : 0.000
 
 Type  : Fast Model Hold 'KEY[2]'
-Slack : 0.254
+Slack : 0.215
 TNS   : 0.000
 
 Type  : Fast Model Minimum Pulse Width 'CLOCK_50'
@@ -96,6 +96,6 @@ TNS   : -2.222
 
 Type  : Fast Model Minimum Pulse Width 'Clock:clk|clock_dec'
 Slack : -0.500
-TNS   : -42.000
+TNS   : -40.000
 
 ------------------------------------------------------------

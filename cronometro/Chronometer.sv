@@ -1,3 +1,11 @@
+/*
+ *	@file Start.sv
+ * @author Talita Valeria
+ * @date 06/12/2016
+ * @brief Modulo responsavel pela operacao do cronometro
+ *
+**/
+
 module Chronometer(
 	input logic clock,
 	input logic pause,
@@ -20,13 +28,8 @@ logic [10:0]save_cont[2:0];
 
 always_ff @(posedge clock)
 begin
-	if (reset == 1'b1)
-	begin
-		cont_sec = 'd0;
-		cont_dec = 'd0;
-		flag     = 1'b0;
-	end
-	else if(pause == 1'b1)
+	
+	if(pause == 1'b1)
 	begin
 		if(flag == 1'b1)
 		begin
@@ -34,6 +37,7 @@ begin
 			cont_dec = saved_cont_dec;
 			flag <= 1'b0;
 		end
+		
 		if( cont_sec == 'd59 )
 			cont_sec = 'd0;
 			
@@ -50,6 +54,15 @@ begin
 	end
 	else
 	begin
+		if (reset == 1'b1)
+		begin
+			cont_sec = 'd0;
+			cont_dec = 'd0;
+			saved_cont_sec = 'd0;
+			saved_cont_dec = 'd0;
+			flag = 1'b0;
+		end
+		
 		if(key[0] == 1'b1)
 		begin	
 			cont_dec = save_cont[0][6:0];

@@ -1,3 +1,11 @@
+/*
+ *	@file Start.sv
+ * @author Talita Valeria
+ * @date 06/12/2016
+ * @brief Modulo responsavel por exibir os digitos no display de 7 segmentos
+ *
+**/
+
 module Display (
 	input logic  [3:0]digit,
 	output logic [6:0]out
