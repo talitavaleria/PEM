@@ -23,8 +23,8 @@ logic [26:0]cont_clock_sec;
 logic [26:0]cont_clock_dec;
 logic [5:0]cont_sec;
 logic [6:0]cont_dec;
-logic [5:0]saved_cont_sec;
-logic [6:0]saved_cont_dec;
+//logic [5:0]saved_cont_sec;
+//logic [6:0]saved_cont_dec;
 logic [3:0]du;
 logic [3:0]dd;
 logic [3:0]su;
@@ -37,10 +37,25 @@ Display disp1(.digit(dd), .out(HEX1));
 Display disp2(.digit(su), .out(HEX2));
 Display disp3(.digit(sd), .out(HEX3));
 
-always_ff @(negedge KEY[0])
-	pause <= ~pause;
+Clock clk(.clock(CLOCK_50), .clock_dec(clock_dec));
 
-always_ff @(negedge KEY[2])
+Chronometer chrono( .clock(clock_dec), .pause(pause), .reset(reset), .lap(KEY[2]), .key(SW[2:0]) , .du(du), .dd(dd), .su(su), .sd(sd) );
+
+Start str(.start(KEY[0]), .reset(reset), .pause(pause));
+
+always_comb
+begin
+	LEDR[0] <= pause;
+	LEDR[1] <= reset;
+	LEDR[2] <= flag;
+	reset <= ~KEY[1];
+end
+
+	
+/*always_ff @(negedge KEY[0])
+	pause <= ~pause;*/
+
+/*always_ff @(negedge KEY[2])
 begin
 		
 	save_cont[save_pos][6:0] <= cont_dec;
@@ -50,17 +65,9 @@ begin
 		save_pos <= 2'd0;
 	else save_pos <= save_pos + 2'd1;
 
-end	
+end	*/
 	
-always_comb
-begin
-	LEDR[0] <= pause;
-	LEDR[1] <= reset;
-	LEDR[2] <= flag;
-	reset <= ~KEY[1];
-end
-	
-always_ff @(posedge CLOCK_50)
+/*always_ff @(posedge CLOCK_50)
 begin
 	
 	if( cont_clock_dec == 'd249999 )
@@ -78,14 +85,15 @@ begin
 	end
 	else
 		cont_clock_sec <= cont_clock_sec + 1'b1;
-end
+end*/
 
-always_ff @(posedge clock_dec)
+/*always_ff @(posedge clock_dec)
 begin
 	if (reset == 1'b1)
 	begin
 		cont_sec = 'd0;
 		cont_dec = 'd0;
+		flag     = 1'b0;
 	end
 
 	if(pause == 1'b1)
@@ -112,7 +120,6 @@ begin
 	end
 	else
 	begin
-		
 		if(SW[0] == 1'b1)
 		begin	
 			cont_dec = save_cont[0][6:0];
@@ -131,7 +138,11 @@ begin
 			cont_sec = save_cont[2][10:7];
 			flag = 1'b1;
 		end
-	
+		else if(flag == 1'b1)
+		begin
+			cont_sec = saved_cont_sec;
+			cont_dec = saved_cont_dec;
+		end
 	end
 	
 	du <= cont_dec % 6'd10;
@@ -139,6 +150,6 @@ begin
 	su <= cont_sec % 5'd10;
 	sd <= cont_sec / 5'd10;
 	
-end
+end*/
 
 endmodule
